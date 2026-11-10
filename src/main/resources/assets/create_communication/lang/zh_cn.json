@@ -1,0 +1,21 @@
+{
+    "create_communication.name": "机械动力：通信工程",
+
+    "itemGroup.create_communication.base": "机械动力：通信工程",
+
+    "create_communication.slot.create_communication.basic": "基础端口",
+    "create_communication.connector.create_communication.wireless": "无线连接器",
+
+
+    "create_communication.payload.create_communication.redstone": "红石能级载荷",
+    "create_communication.adapter.create_communication.redstone": "红石通信适配器",
+
+    "block.create_communication.redstone_adapter": "红石适配器",
+    "block.create_communication.adapter.tooltip.title": "红石适配器信息：",
+    "block.create_communication.adapter.tooltip.slot.occupied": "已插入",
+    "block.create_communication.adapter.tooltip.slot.free": "未插入",
+
+    "item.create_communication.basic_slot": "基础端口",
+    "item.create_communication.wireless_connector": "无线连接器"
+
+}

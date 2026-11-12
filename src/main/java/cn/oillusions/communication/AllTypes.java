@@ -2,6 +2,7 @@ package cn.oillusions.communication;
 
 import cn.oillusions.communication.foundation.core.graph.Medium;
 import cn.oillusions.communication.foundation.core.type.ConnectorType;
+import cn.oillusions.communication.foundation.core.type.MediumType;
 import cn.oillusions.communication.foundation.core.type.PayloadType;
 import cn.oillusions.communication.foundation.core.type.SlotType;
 import net.minecraft.core.Registry;
@@ -17,7 +18,7 @@ public class AllTypes {
     public static final ResourceKey<Registry<PayloadType<?>>> PAYLOAD_TYPE_KEY =
         ResourceKey.createRegistryKey(Communication.modLoc("payload_type"));
 
-    public static final ResourceKey<Registry<Medium>> MEDIUM_TYPE_KEY =
+    public static final ResourceKey<Registry<MediumType<?>>> MEDIUM_TYPE_KEY =
         ResourceKey.createRegistryKey(Communication.modLoc("medium_type"));
 
 

@@ -1,6 +1,6 @@
 package cn.oillusions.communication.content.client.gui;
 
-import cn.oillusions.communication.content.menu.ChannelCreateMenu;
+import cn.oillusions.communication.foundation.communication.menu.ChannelCreateMenu;
 import cn.oillusions.communication.foundation.communication.network.payload.CloseChannelSelectPayload;
 import cn.oillusions.communication.foundation.communication.network.payload.ReturnChannelCreateResultPayload;
 import com.simibubi.create.foundation.gui.AllIcons;

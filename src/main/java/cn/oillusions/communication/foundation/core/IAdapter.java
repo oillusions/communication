@@ -1,6 +1,5 @@
 package cn.oillusions.communication.foundation.core;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
 
 public interface IAdapter {

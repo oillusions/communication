@@ -1,0 +1,24 @@
+{
+    "communication.name": "通信",
+
+    "itemGroup.communication.base": "通信",
+
+    "communication.slot.communication.basic": "基础插槽",
+    "communication.connector.communication.wireless": "无线连接器",
+
+
+    "communication.payload.communication.redstone": "红石能级载荷",
+    "communication.payload.communication.cc_tweaked": "CC：Tweaked 载荷",
+
+    "communication.adapter.communication.redstone": "红石通信适配器",
+
+    "block.communication.redstone_adapter": "红石适配器",
+    "block.communication.cc_tweaked_adapter": "CC：Tweaked 适配器",
+
+    "item.communication.basic_slot": "基础端口",
+    "item.communication.wireless_connector": "无线连接器",
+
+    "block.communication.adapter.tooltip.title": "通信适配器信息：",
+    "block.communication.adapter.tooltip.slot.occupied": "已插入",
+    "block.communication.adapter.tooltip.slot.free": "未插入"
+}

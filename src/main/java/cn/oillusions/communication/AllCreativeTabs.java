@@ -15,12 +15,12 @@ public class AllCreativeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BASE_TAB = REGISTER.register(
         "base",
         () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.create_communication.base"))
-            .withTabsBefore(AllCreativeModeTabs.BASE_CREATIVE_TAB.getId())
+            .title(Component.translatable("itemGroup.communication.base"))
             .icon(() -> new ItemStack(AllBlocks.REDSTONE_ADAPTER_BLOCK.asStack().getItem()))
             .displayItems((params, output) -> {
-                output.accept(AllItems.BASIC_PORT_ITEM.get());
                 output.accept(AllItems.REDSTONE_ADAPTER.get());
+                output.accept(AllItems.CC_TWEAKED_ADAPTER.get());
+
                 output.accept(AllItems.WIRELESS_CONNECTOR_ITEM.get());
             })
             .build()

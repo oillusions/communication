@@ -1,7 +1,7 @@
 package cn.oillusions.communication.content.client.gui;
 
 import cn.oillusions.communication.content.client.gui.widget.CandidateBox;
-import cn.oillusions.communication.content.menu.ChannelSelectMenu;
+import cn.oillusions.communication.foundation.communication.menu.ChannelSelectMenu;
 import cn.oillusions.communication.foundation.communication.network.payload.CloseChannelSelectPayload;
 import cn.oillusions.communication.foundation.communication.network.payload.OpenChannelCreateMenuPayload;
 import cn.oillusions.communication.foundation.communication.network.payload.ReturnChannelSelectResultPayload;

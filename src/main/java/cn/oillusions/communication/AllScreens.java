@@ -2,15 +2,17 @@ package cn.oillusions.communication;
 
 import cn.oillusions.communication.content.client.gui.ChannelCreateScreen;
 import cn.oillusions.communication.content.client.gui.ChannelSelectScreen;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import org.jetbrains.annotations.NotNull;
 
 @EventBusSubscriber(modid = Communication.ID)
 public class AllScreens {
 
     @SubscribeEvent
-    public static void onRegisterMenuScreens(RegisterMenuScreensEvent event) {
+    public static void onRegisterMenuScreens(@NotNull RegisterMenuScreensEvent event) {
         event.register(
             AllMenus.CHANNEL_SELECT_MENU.get(),
             ChannelSelectScreen::new

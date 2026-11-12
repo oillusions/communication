@@ -1,9 +1,8 @@
-package cn.oillusions.communication.content.redstone.block;
+package cn.oillusions.communication.content.redstone;
 
 import cn.oillusions.communication.AllBlockEntities;
 import cn.oillusions.communication.foundation.communication.AttachConnectorHandler;
 import cn.oillusions.communication.foundation.core.AdapterBlock;
-import cn.oillusions.communication.content.redstone.block.entity.RedstoneAdapterEntity;
 import cn.oillusions.communication.foundation.core.AdapterBlockEntity;
 import cn.oillusions.communication.foundation.core.ConnectorItem;
 import cn.oillusions.communication.foundation.core.Slot;
@@ -71,7 +70,7 @@ public class RedstoneAdapterBlock extends AdapterBlock implements IWrenchable {
                 newState,
                 Block.UPDATE_ALL);
 
-            if (level.getBlockEntity(context.getClickedPos()) instanceof RedstoneAdapterEntity entity) {
+            if (level.getBlockEntity(context.getClickedPos()) instanceof RedstoneAdapterBlockEntity entity) {
                 if (newState.getValue(TRANSMITTER)) {
                     entity.sendRedstoneSignal(level.getBestNeighborSignal(context.getClickedPos()));
                 } else {
@@ -85,16 +84,16 @@ public class RedstoneAdapterBlock extends AdapterBlock implements IWrenchable {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState) {
-        return new RedstoneAdapterEntity(AllBlockEntities.COMMUNICATION_ADAPTER_BLOCK_ENTITY.get(), blockPos, blockState);
+        return new RedstoneAdapterBlockEntity(AllBlockEntities.COMMUNICATION_ADAPTER_BLOCK_ENTITY.get(), blockPos, blockState);
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(@NotNull StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, TRANSMITTER);
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+    public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
         return this.defaultBlockState()
             .setValue(FACING, context.getClickedFace());
     }
@@ -124,7 +123,7 @@ public class RedstoneAdapterBlock extends AdapterBlock implements IWrenchable {
             if (item instanceof ConnectorItem<?> connectorItem) {
                 if (entity instanceof AdapterBlockEntity counterEntity) {
                     Vec3 relative = hit.getLocation().subtract(Vec3.atLowerCornerOf(pos)).scale(0.99);
-                    List<VoxelShape> portShapes = portShapes(state);
+                    List<VoxelShape> portShapes = slotShapes(state);
                     for (int i = 0; i < portShapes.size(); i++) {
                         if (!portShapes.get(i).bounds().contains(relative)) continue;
 
@@ -141,7 +140,7 @@ public class RedstoneAdapterBlock extends AdapterBlock implements IWrenchable {
     }
 
     @Override
-    protected boolean canSurvive(BlockState state, @NotNull LevelReader level, BlockPos pos) {
+    protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         Direction facing = state.getValue(FACING);
         BlockPos supportBlockPos = pos.relative(facing.getOpposite());
 
@@ -176,7 +175,7 @@ public class RedstoneAdapterBlock extends AdapterBlock implements IWrenchable {
         if (level.isClientSide) return;
 
         if (!state.getValue(TRANSMITTER)) return;
-        if (level.getBlockEntity(pos) instanceof RedstoneAdapterEntity entity) {
+        if (level.getBlockEntity(pos) instanceof RedstoneAdapterBlockEntity entity) {
             int redstoneLevel = level.getBestNeighborSignal(pos);
             entity.sendRedstoneSignal(redstoneLevel);
         }
@@ -185,7 +184,7 @@ public class RedstoneAdapterBlock extends AdapterBlock implements IWrenchable {
     @Override
     protected int getSignal(@NotNull BlockState state, @NotNull BlockGetter getter, @NotNull BlockPos pos, @NotNull Direction direction) {
         if (state.getValue(TRANSMITTER)) return 0;
-        if (getter.getBlockEntity(pos) instanceof RedstoneAdapterEntity entity) {
+        if (getter.getBlockEntity(pos) instanceof RedstoneAdapterBlockEntity entity) {
             return entity.redstoneLevel();
         }
         return 0;
@@ -194,14 +193,14 @@ public class RedstoneAdapterBlock extends AdapterBlock implements IWrenchable {
     @Override
     protected int getDirectSignal(@NotNull BlockState state, @NotNull BlockGetter getter, @NotNull BlockPos pos, @NotNull Direction direction) {
         if (state.getValue(TRANSMITTER)) return 0;
-        if (getter.getBlockEntity(pos) instanceof RedstoneAdapterEntity entity) {
+        if (getter.getBlockEntity(pos) instanceof RedstoneAdapterBlockEntity entity) {
             return entity.redstoneLevel();
         }
         return 0;
     }
 
     @Override
-    public ArrayList<VoxelShape> portShapes(BlockState state) {
+    public ArrayList<VoxelShape> slotShapes(@NotNull BlockState state) {
         return new ArrayList<>(List.of(SHAPE_UP.get(state.getValue(FACING))));
     }
 }

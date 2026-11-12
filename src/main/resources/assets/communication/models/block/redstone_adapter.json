@@ -3,9 +3,9 @@
   "credit": "Made with Blockbench",
   "parent": "minecraft:block/block",
   "textures": {
-    "0": "create_communication:block/redstone_adapter_base",
-    "1": "create_communication:block/redstone_adapter",
-    "particle": "create_communication:block/redstone_adapter_base"
+    "0": "communication:block/redstone_adapter_base",
+    "1": "communication:block/redstone_adapter",
+    "particle": "communication:block/redstone_adapter_base"
   },
   "elements": [
     {

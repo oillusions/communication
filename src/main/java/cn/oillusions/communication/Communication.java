@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 
 @Mod(Communication.ID)
 public class Communication {
-    public static final String ID = "create_communication";
+    public static final String ID = "communication";
     public static final Component NAME = Component.translatable("communication.name");
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ID);
@@ -24,7 +24,6 @@ public class Communication {
     }
 
     public Communication(IEventBus modEventBus, ModContainer modContainer) {
-
         REGISTRATE.registerEventListeners(modEventBus);
 
         AllMediums.register(modEventBus);
@@ -32,9 +31,9 @@ public class Communication {
         AllSlots.register(modEventBus);
         AllConnectors.register(modEventBus);
         AllMenus.register(modEventBus);
-        AllCreativeTabs.register(modEventBus);
         AllBlocks.register(modEventBus);
         AllItems.register(modEventBus);
+        AllCreativeTabs.register(modEventBus);
         AllBlockEntities.register(modEventBus);
     }
 

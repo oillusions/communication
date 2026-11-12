@@ -1,12 +1,9 @@
-package cn.oillusions.communication.content.redstone.block.entity;
+package cn.oillusions.communication.content.redstone;
 
-import cn.oillusions.communication.content.redstone.RedstoneSignalStrengthPayload;
-import cn.oillusions.communication.content.redstone.block.RedstoneAdapterBlock;
 import cn.oillusions.communication.foundation.core.AdapterBlockEntity;
 import cn.oillusions.communication.content.basic.BasicSlot;
 import cn.oillusions.communication.foundation.core.Connector;
 import cn.oillusions.communication.foundation.core.Payload;
-import cn.oillusions.communication.foundation.core.graph.EdgeID;
 import cn.oillusions.communication.foundation.core.graph.IDAllocator;
 import com.simibubi.create.foundation.utility.CreateLang;
 import net.minecraft.core.BlockPos;
@@ -22,13 +19,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RedstoneAdapterEntity extends AdapterBlockEntity {
+public class RedstoneAdapterBlockEntity extends AdapterBlockEntity {
     protected static final IDAllocator idAllocator = new IDAllocator(0);
     public final long id;
     protected final Map<Long, Byte> redstoneLevels = new HashMap<>();
 
     private int redstoneLevel;
-    public RedstoneAdapterEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+    public RedstoneAdapterBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         createDefaultSlots();
         redstoneLevel = 0;

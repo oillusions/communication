@@ -1,7 +1,7 @@
 package cn.oillusions.communication.foundation.communication.network.payload;
 
 import cn.oillusions.communication.Communication;
-import cn.oillusions.communication.content.menu.ChannelCreateMenu;
+import cn.oillusions.communication.foundation.communication.menu.ChannelCreateMenu;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;

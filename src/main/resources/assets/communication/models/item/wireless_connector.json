@@ -2,9 +2,9 @@
   "format_version": "1.9.0",
   "credit": "Made with Blockbench",
   "textures": {
-    "0": "create_communication:item/wireless_connector",
-    "1": "create_communication:item/wireless_connector_housings",
-    "2": "create_communication:item/wireless_connector_dynamic"
+    "0": "communication:item/wireless_connector",
+    "1": "communication:item/wireless_connector_housings",
+    "2": "communication:item/wireless_connector_dynamic"
   },
   "elements": [
     {

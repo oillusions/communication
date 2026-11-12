@@ -1,6 +1,7 @@
 package cn.oillusions.communication;
 
 
+import cn.oillusions.communication.content.cct.CCTweakedPayload;
 import cn.oillusions.communication.content.redstone.RedstoneSignalStrengthPayload;
 import cn.oillusions.communication.foundation.core.type.PayloadType;
 import net.neoforged.bus.api.IEventBus;
@@ -13,6 +14,9 @@ public class AllPayloads {
 
     public static final DeferredHolder<PayloadType<?>, PayloadType<RedstoneSignalStrengthPayload>> REDSTONE_SIGNAL_PAYLOAD =
         REGISTER.register("redstone_signal", () -> RedstoneSignalStrengthPayload.TYPE);
+
+    public static final DeferredHolder<PayloadType<?>, PayloadType<CCTweakedPayload>> CC_TWEAKED_PAYLOAD =
+        REGISTER.register("cc_tweaked", () -> CCTweakedPayload.TYPE);
 
 
     public static void register(IEventBus modEventBus) {

@@ -60,17 +60,18 @@ public class Graph extends SavedData {
     public void registerInstance(@NotNull Connector connector) {
         EdgeID edgeID = connector.edgeID();
         if (!edges.containsKey(edgeID)) return;
+        Medium medium = edges.get(edgeID).medium();
 
-        edges.get(edgeID).put(connector);
+        medium.put(connector);
     }
 
     @Nullable
     public Connector deregisterInstance(@NotNull Connector connector) {
         EdgeID edgeID = connector.edgeID();
         if (!edges.containsKey(edgeID)) return null;
-        EdgeMeta edgeMeta = edges.get(edgeID);
+        Medium medium = edges.get(edgeID).medium();
 
-        return edgeMeta.remove(connector);
+        return medium.remove(connector);
     }
 
     public EdgeID put(@NotNull String edgeName, @NotNull Medium medium) {
@@ -90,9 +91,9 @@ public class Graph extends SavedData {
 
     public boolean remove(@NotNull EdgeID edgeID) {
         if (!edges.containsKey(edgeID)) return true;
-        EdgeMeta edgeMeta = edges.get(edgeID);
+        Medium medium = edges.get(edgeID).medium();
 
-        if (edgeMeta.cacheCount() != 0) return false;
+        if (medium.cacheCount() != 0) return false;
 
         edges.remove(edgeID);
         setDirty();
@@ -133,14 +134,9 @@ public class Graph extends SavedData {
         Task task;
         while ((task = tasks.poll()) != null) {
             if (!edges.containsKey(task.edgeID)) continue;
-            EdgeMeta edgeMeta = edges.get(task.edgeID);
+            Medium medium = edges.get(task.edgeID).medium();
 
-            edgeMeta.medium.propagate(
-                task.source,
-                edgeMeta.edgeID(),
-                edgeMeta.caches(),
-                task.envelope()
-            );
+            medium.propagate(task.source, task.envelope);
         }
     }
 

@@ -1,4 +1,4 @@
-package cn.oillusions.communication.content.menu;
+package cn.oillusions.communication.foundation.communication.menu;
 
 import cn.oillusions.communication.AllMenus;
 import cn.oillusions.communication.foundation.communication.AttachConnectorHandler;

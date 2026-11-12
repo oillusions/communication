@@ -19,8 +19,8 @@ public class AllItems {
         "wireless_connector", () -> new WirelessConnectorItem(new Item.Properties())
     );
 
-    public static final DeferredHolder<Item, BasicSlotItem> BASIC_PORT_ITEM = REGISTER.register(
-        "basic_slot", () -> new BasicSlotItem(new Item.Properties())
+    public static final DeferredHolder<Item, BlockItem> CC_TWEAKED_ADAPTER = REGISTER.register(
+        "cc_tweaked_adapter", () -> new BlockItem(AllBlocks.CC_TWEAKED_ADAPTER_BLOCK.get(), new Item.Properties())
     );
 
     public static void register(IEventBus modEventBus) {

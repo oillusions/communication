@@ -1,0 +1,23 @@
+{
+    "communication.name": "Communication",
+
+    "itemGroup.communication.base": "Communication",
+
+    "communication.slot.communication.basic": "Basic slot",
+    "communication.connector.communication.wireless": "Wireless connector",
+
+    "communication.payload.communication.redstone": "Redstone payload",
+    "communication.payload.communication.cc_tweaked": "CC:Tweaked payload",
+
+    "communication.adapter.communication.redstone": "Redstone adapter",
+
+    "block.communication.redstone_adapter": "Redstone communication adapter",
+    "block.communication.cc_tweaked_adapter": "CC:Tweaked adapter",
+
+    "item.communication.basic_slot": "Basic Port",
+    "item.communication.wireless_connector": "Wireless Connector",
+
+    "block.communication.adapter.tooltip.title": "communication adapter information:",
+    "block.communication.adapter.tooltip.slot.occupied": "occupied",
+    "block.communication.adapter.tooltip.slot.free": "free"
+}

@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 @EventBusSubscriber(modid = Communication.ID)
 public class ServerGraphHolder {
-    public static final String FILE_ID = "create_communication.graph";
+    public static final String FILE_ID = "communication.graph";
     @Nullable public static Graph layer;
 
 

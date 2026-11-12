@@ -73,6 +73,15 @@ repositories {
         }
         filter { includeGroup "maven.modrinth" }
     }
+
+    exclusiveContent {
+        forRepository {
+            maven { url = "https://maven.ryanhcode.dev/releases" }
+        }
+        filter {
+            includeGroup("dev.ryanhcode.sable-companion")
+        }
+    }
 }
 
 dependencies {
@@ -83,11 +92,19 @@ dependencies {
     implementation("com.tterrag.registrate:Registrate:${registrate_version}")
 
     implementation("maven.modrinth:${sable_modrinth_id}:${sable_modrinth_version}")
+    compileOnly("dev.ryanhcode.sable-companion:sable-companion-common-${minecraft_version}:${sable_companion_version}")
     implementation("maven.modrinth:${aeronautics_modrinth_id}:${aeronautics_modrinth_version}")
 
+    compileOnly("org.jspecify:jspecify:1.0.0")
     implementation("maven.modrinth:${cc_t_modrinth_id}:${cc_t_modrinth_version}")
 
     implementation("maven.modrinth:zRIA8Bvc:Edl2jqsW")
+
+    jarJar(api("dev.ryanhcode.sable-companion:sable-companion-common-${minecraft_version}:[${sable_companion_version},)")) {
+        version {
+            prefer(sable_companion_version)
+        }
+    }
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

@@ -4,6 +4,9 @@ import cn.oillusions.communication.AllCodecs;
 import cn.oillusions.communication.Communication;
 import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.foundation.utility.CreateLang;
+import dev.ryanhcode.sable.companion.SableCompanion;
+import dev.ryanhcode.sable.companion.SubLevelAccess;
+import dev.ryanhcode.sable.companion.math.Pose3dc;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -164,16 +167,14 @@ public class AdapterBlockEntity extends BlockEntity implements IAdapter, IHaveGo
     @Override
     public Vec3 getPos() {
         Vec3 pos = Vec3.atCenterOf(getBlockPos());
-//        if (Communication.hasMod(Communication.SableID)) {
-//            SubLevel subLevel = Sable.HELPER.getContaining(getLevel(), pos);
-//            if (subLevel == null) {
-//                return pos;
-//            } else {
-//                return pos;
-//            }
-//        } else {
-//            return pos;
-//        }
+        if (Communication.hasMod(Communication.SableID)) {
+            SubLevelAccess subLevel = SableCompanion.INSTANCE.getContaining(getLevel(), pos);
+            if (subLevel != null) {
+                Pose3dc pose = subLevel.logicalPose();
+                pos = pose.transformPosition(pos);
+            }
+            pos = SableCompanion.INSTANCE.projectOutOfSubLevel(level, pos);
+        }
         return pos;
     }
 
@@ -184,7 +185,7 @@ public class AdapterBlockEntity extends BlockEntity implements IAdapter, IHaveGo
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
         CreateLang.builder()
-            .add(Component.translatable("block.create_communication.adapter.tooltip.title"))
+            .add(Component.translatable("block.communication.adapter.tooltip.title"))
             .forGoggles(tooltip);
 
         CreateLang.builder()
@@ -197,8 +198,8 @@ public class AdapterBlockEntity extends BlockEntity implements IAdapter, IHaveGo
                     .append(Component.literal("#" + i + ": ")
                         .withStyle(ChatFormatting.GRAY)
                         .append(slot(i).isOccupied()
-                        ? Component.translatable("block.create_communication.adapter.tooltip.slot.occupied").withStyle(ChatFormatting.GREEN)
-                        : Component.translatable("block.create_communication.adapter.tooltip.slot.free").withStyle(ChatFormatting.YELLOW)
+                        ? Component.translatable("block.communication.adapter.tooltip.slot.occupied").withStyle(ChatFormatting.GREEN)
+                        : Component.translatable("block.communication.adapter.tooltip.slot.free").withStyle(ChatFormatting.YELLOW)
                         )))
                 .forGoggles(tooltip);
         }

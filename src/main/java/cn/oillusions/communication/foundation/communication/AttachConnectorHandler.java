@@ -6,7 +6,8 @@ import cn.oillusions.communication.foundation.core.ConnectorItem;
 import cn.oillusions.communication.foundation.core.Slot;
 import cn.oillusions.communication.foundation.core.graph.*;
 import cn.oillusions.communication.foundation.core.graph.IDAllocator;
-import cn.oillusions.communication.content.menu.ChannelSelectMenu;
+import cn.oillusions.communication.foundation.communication.menu.ChannelSelectMenu;
+import cn.oillusions.communication.foundation.core.type.MediumType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -72,10 +73,10 @@ public class AttachConnectorHandler {
 
         Task task = tasks.get(selectTaskID);
 
-        Medium medium = AllRegistries.MEDIUMS.get(task.ConnectorItem.type().supportMediumID());
-        if (medium == null) return;
+        MediumType<?> mediumType = AllRegistries.MEDIUMS.get(task.ConnectorItem.type().supportMediumID());
+        if (mediumType == null) return;
 
-        ServerGraphHolder.get().put(edgeName, medium);
+        ServerGraphHolder.get().put(edgeName, mediumType.mediumSupplier().get());
 
         continueConnectorAttach(selectTaskID);
     }

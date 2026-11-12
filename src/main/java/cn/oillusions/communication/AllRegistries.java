@@ -1,7 +1,7 @@
 package cn.oillusions.communication;
 
-import cn.oillusions.communication.foundation.core.graph.Medium;
 import cn.oillusions.communication.foundation.core.type.ConnectorType;
+import cn.oillusions.communication.foundation.core.type.MediumType;
 import cn.oillusions.communication.foundation.core.type.PayloadType;
 import cn.oillusions.communication.foundation.core.type.SlotType;
 import net.minecraft.core.Registry;
@@ -10,15 +10,17 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 import net.neoforged.neoforge.registries.RegistryBuilder;
+import org.jetbrains.annotations.NotNull;
 
 @EventBusSubscriber(modid = Communication.ID)
 public class AllRegistries {
     public static final Registry<SlotType<?>> SLOTS = create(AllTypes.SLOT_TYPE_KEY);
     public static final Registry<ConnectorType<?>> CONNECTORS = create(AllTypes.CONNECTOR_TYPE_KEY);
     public static final Registry<PayloadType<?>> PAYLOADS = create(AllTypes.PAYLOAD_TYPE_KEY);
-    public static final Registry<Medium> MEDIUMS = create(AllTypes.MEDIUM_TYPE_KEY);
+    public static final Registry<MediumType<?>> MEDIUMS = create(AllTypes.MEDIUM_TYPE_KEY);
 
 
+    @NotNull
     private static <T> Registry<T> create(ResourceKey<Registry<T>> key) {
         return new RegistryBuilder<>(key)
             .sync(false)
@@ -26,7 +28,7 @@ public class AllRegistries {
     }
 
     @SubscribeEvent
-    public static void registerRegistries(NewRegistryEvent event) {
+    public static void registerRegistries(@NotNull NewRegistryEvent event) {
         event.register(SLOTS);
         event.register(CONNECTORS);
         event.register(PAYLOADS);

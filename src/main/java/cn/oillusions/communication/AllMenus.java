@@ -1,7 +1,7 @@
 package cn.oillusions.communication;
 
-import cn.oillusions.communication.content.menu.ChannelCreateMenu;
-import cn.oillusions.communication.content.menu.ChannelSelectMenu;
+import cn.oillusions.communication.foundation.communication.menu.ChannelCreateMenu;
+import cn.oillusions.communication.foundation.communication.menu.ChannelSelectMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.bus.api.IEventBus;

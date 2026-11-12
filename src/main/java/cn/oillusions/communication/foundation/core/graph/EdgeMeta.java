@@ -3,6 +3,7 @@ package cn.oillusions.communication.foundation.core.graph;
 import cn.oillusions.communication.AllCodecs;
 import cn.oillusions.communication.AllRegistries;
 import cn.oillusions.communication.foundation.core.Connector;
+import cn.oillusions.communication.foundation.core.type.MediumType;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -18,16 +19,13 @@ public class EdgeMeta {
     private String edgeName;
     public final Medium medium;
 
-    ArrayList<Connector> caches = new ArrayList<>();
-
     public static final MapCodec<EdgeMeta> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
         EdgeID.CODEC.fieldOf("edgeID").forGetter(EdgeMeta::edgeID),
         Codec.STRING.fieldOf("edgeName").forGetter(EdgeMeta::edgeName),
-        ResourceLocation.CODEC.fieldOf("mediumID").forGetter(edgeMeta -> edgeMeta.medium().id())
-    ).apply(i, (edgeID, edgeName, mediumID) -> {
-        Medium medium = AllRegistries.MEDIUMS.get(mediumID);
-        if (medium == null) medium = new Medium();
-
+        ResourceLocation.CODEC.fieldOf("mediumID").forGetter(edgeMeta -> edgeMeta.medium().getType().id()),
+        AllCodecs.MEDIUM_CODEC.fieldOf("medium").forGetter(EdgeMeta::medium)
+    ).apply(i, (edgeID, edgeName, mediumID, medium) -> {
+//        MediumType<?> mediumType = AllRegistries.MEDIUMS.get(mediumID);
         return new EdgeMeta(
             edgeID,
             edgeName,
@@ -39,39 +37,18 @@ public class EdgeMeta {
         @NotNull EdgeID edgeID,
         @NotNull String edgeName,
         @NotNull Medium medium
-        ) {
+    ) {
         this.edgeID = edgeID;
         this.edgeName= edgeName;
         this.medium = medium;
     }
 
-    public void put(@NotNull Connector connector) {
-        if (contains(connector)) return;
-
-        caches.add(connector);
-    }
-
-    @Nullable
-    public Connector remove(@NotNull Connector connector) {
-        if (!contains(connector)) return null;
-
-        return caches.remove(caches.indexOf(connector));
-    }
-
-    public int cacheCount() {
-        return caches.size();
+    public EdgeID edgeID() {
+        return edgeID;
     }
 
     public void setEdgeName(@NotNull String edgeName) {
         this.edgeName = edgeName;
-    }
-
-    public boolean contains(@NotNull Connector connector) {
-        return caches.contains(connector);
-    }
-
-    public EdgeID edgeID() {
-        return edgeID;
     }
 
     public String edgeName() {
@@ -84,9 +61,5 @@ public class EdgeMeta {
 
     protected Medium medium() {
         return medium;
-    }
-
-    protected ArrayList<Connector> caches() {
-        return caches;
     }
 }

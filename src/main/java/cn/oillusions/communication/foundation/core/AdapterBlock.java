@@ -17,7 +17,7 @@ public abstract class AdapterBlock extends Block implements EntityBlock {
         super(properties);
     }
 
-    public ArrayList<VoxelShape> portShapes(BlockState state) {
+    public ArrayList<VoxelShape> slotShapes(BlockState state) {
         return new ArrayList<>(List.of());
     }
 
